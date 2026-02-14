@@ -1,126 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Be My Valentine?</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin: 0;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8">
+  <title>Be My Valentine?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 0;
+      overflow: hidden;
+    }
 
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            position: relative;
-            width: 340px;
-            min-height: 280px; /* keeps space for message */
-        }
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      position: relative;
+      width: 340px;
+      min-height: 280px;
+    }
 
-        h1 {
-            margin-bottom: 25px;
-        }
+    h1 {
+      margin-bottom: 20px;
+    }
 
-        .buttons {
-            position: relative;
-            height: 80px; /* reserved space for buttons */
-        }
+    .buttons {
+      position: relative;
+      height: 80px;
+    }
 
-        button {
-            font-size: 18px;
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        #yesBtn {
-            background-color: #ff4d6d;
-            color: white;
-        }
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+    }
 
-        #noBtn {
-            background-color: #ccc;
-            position: relative;
-        }
+    #noBtn {
+      background-color: #ccc;
+      position: relative;
+    }
 
-        #message {
-            margin-top: 30px;
-            min-height: 28px; /* prevents text from disappearing */
-            font-weight: bold;
-            color: #ff4d6d;
-        }
-    </style>
+    #message {
+      margin-top: 18px;
+      min-height: 28px;
+      font-weight: bold;
+      color: #ff4d6d;
+    }
+
+    /* NEW: image area */
+    #finalImage {
+      display: none;
+      margin: 18px auto 0;
+      width: 220px;
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
+  <div class="container">
     <h1 id="question">Will you be my Valentine? 💖</h1>
 
-    <div class="buttons">
-        <button id="yesBtn">Yes</button>
-        <button id="noBtn">No</button>
+    <div class="buttons" id="buttonsArea">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
     </div>
 
     <p id="message"></p>
-</div>
 
-<script>
+    <!-- NEW: add your image here -->
+    <!-- Put the image file in the SAME folder as index.html -->
+    <img id="finalImage" src="baatpakki.jpg" alt="Baat Pakki!">
+  </div>
+
+  <script>
     let noClicks = 0;
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const message = document.getElementById("message");
     const question = document.getElementById("question");
+    const buttonsArea = document.getElementById("buttonsArea");
+    const finalImage = document.getElementById("finalImage");
 
     const funnyMessages = [
-        "Are you sure? 🥺",
-        "Really sure??",
-        "Think again…",
-        "Last chance!",
-        "You’re breaking my heart 💔",
-        "Okay this is getting awkward…",
-        "Just press yes already 😭"
+      "Are you sure? 🥺",
+      "Really sure??",
+      "Think again…",
+      "Last chance!",
+      "You’re breaking my heart 💔",
+      "Okay this is getting awkward…",
+      "Just press yes already 😭"
     ];
 
     noBtn.addEventListener("click", () => {
-        noClicks++;
+      noClicks++;
 
-        // Make YES button bigger
-        let yesScale = 1 + (noClicks * 0.3);
-        yesBtn.style.transform = `scale(${yesScale})`;
+      // Make YES button bigger
+      let yesScale = 1 + (noClicks * 0.3);
+      yesBtn.style.transform = `scale(${yesScale})`;
 
-        // Make NO button smaller
-        let noScale = Math.max(0.4, 1 - (noClicks * 0.1));
-        noBtn.style.transform = `scale(${noScale})`;
+      // Make NO button smaller
+      let noScale = Math.max(0.4, 1 - (noClicks * 0.1));
+      noBtn.style.transform = `scale(${noScale})`;
 
-        // Change message
-        let msgIndex = Math.min(noClicks - 1, funnyMessages.length - 1);
-        message.textContent = funnyMessages[msgIndex];
+      // Change message
+      let msgIndex = Math.min(noClicks - 1, funnyMessages.length - 1);
+      message.textContent = funnyMessages[msgIndex];
 
-        // Move NO button randomly
-        noBtn.style.position = "absolute";
-        noBtn.style.top = Math.random() * 60 + "px";
-        noBtn.style.left = Math.random() * 200 + "px";
+      // Move NO button randomly
+      noBtn.style.position = "absolute";
+      noBtn.style.top = Math.random() * 60 + "px";
+      noBtn.style.left = Math.random() * 200 + "px";
     });
 
     yesBtn.addEventListener("click", () => {
-        question.textContent = "Yay!!! 💕";
-        message.textContent = "Best Valentine ever! 💖";
-        yesBtn.style.display = "none";
-        noBtn.style.display = "none";
+      question.textContent = "Yay!!! 💕";
+      message.textContent = "Baat pakki!! 😤💖 Best decision ever...";
+
+      // Hide the entire buttons area (fixes the awkward gap)
+      buttonsArea.style.display = "none";
+
+      // Show the image
+      finalImage.style.display = "block";
     });
-</script>
+  </script>
 
 </body>
 </html>
