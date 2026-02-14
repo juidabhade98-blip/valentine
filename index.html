@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Be My Valentine?</title>
     <style>
-        body { 
+        body {
             font-family: Arial, sans-serif;
             background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
             height: 100vh;
@@ -22,10 +22,17 @@
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             position: relative;
+            width: 340px;
+            min-height: 280px; /* keeps space for message */
         }
 
         h1 {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+        }
+
+        .buttons {
+            position: relative;
+            height: 80px; /* reserved space for buttons */
         }
 
         button {
@@ -49,7 +56,8 @@
         }
 
         #message {
-            margin-top: 20px;
+            margin-top: 30px;
+            min-height: 28px; /* prevents text from disappearing */
             font-weight: bold;
             color: #ff4d6d;
         }
@@ -59,8 +67,12 @@
 
 <div class="container">
     <h1 id="question">Will you be my Valentine? 💖</h1>
-    <button id="yesBtn">Yes</button>
-    <button id="noBtn">No</button>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
     <p id="message"></p>
 </div>
 
@@ -98,8 +110,8 @@
 
         // Move NO button randomly
         noBtn.style.position = "absolute";
-        noBtn.style.top = Math.random() * 80 + "%";
-        noBtn.style.left = Math.random() * 80 + "%";
+        noBtn.style.top = Math.random() * 60 + "px";
+        noBtn.style.left = Math.random() * 200 + "px";
     });
 
     yesBtn.addEventListener("click", () => {
